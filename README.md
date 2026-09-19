@@ -9,36 +9,23 @@ bun install
 bun run dev
 ```
 
-프로덕션 빌드는 `bun run build`, 추천 및 검색 로직 검증은 `bun test`로 실행합니다.
+일반 WebView 빌드는 `bun run build:web`, 앱인토스 업로드용 `.ait` 번들은 `bun run build`, 추천 및 검색 로직 검증은 `bun test`로 실행합니다.
 
-## 그래프 시각화 · GitHub Pages
+## 앱인토스 설정
 
-[인터랙티브 그래프 보기](https://lyllyl-bp.github.io/eodiseomanna/graph/) · [GitHub 저장소](https://github.com/lyllyl-bp/eodiseomanna)
+- 콘솔 `appName`: `eodiseomanna`
+- 앱 노출 이름: `어디서 만나`
+- 딥링크: `intoss://eodiseomanna`
+- 설정 파일: `apps-in-toss.config.ts`
+- SDK: `@apps-in-toss/web-framework` 3.x
 
-그래프 주소는 최초 Pages 배포가 완료된 뒤 접속할 수 있습니다.
+`bun run dev`로 실행하면 AIT Devtools가 포함된 로컬 테스트 환경을 사용할 수 있습니다. 업로드 번들은 아래 명령으로 만듭니다.
 
-[그래프 페이지 소스](docs/graph/index.html)는 일반 브라우저에서 독립적으로 실행되는 페이지입니다. 노선별 연결, 역 선택, 확대·이동, 간선의 운행시간 툴팁과 선택한 역의 시간 가중치를 제공합니다. 로컬에서는 `bun run dev` 실행 후 `http://localhost:5173/docs/graph/index.html`로 확인할 수 있습니다.
+```bash
+bun run build
+```
 
-Pages 루트 `/eodiseomanna/`에는 프로젝트 안내가, 하위 경로 `/eodiseomanna/graph/`에는 그래프가 표시됩니다. `docs/` 디렉터리 구조를 그대로 배포하므로 별도의 라우터나 리다이렉트는 필요하지 않습니다.
-
-### 최초 배포
-
-1. [lyllyl-bp/eodiseomanna](https://github.com/lyllyl-bp/eodiseomanna) 저장소에 코드를 푸시합니다. `docs/`, `scripts/update_graph_data.py`, `.github/workflows/pages.yml`을 함께 포함합니다.
-2. [Pages 설정](https://github.com/lyllyl-bp/eodiseomanna/settings/pages)의 **Build and deployment → Source**에서 **GitHub Actions**를 선택합니다.
-3. [Deploy graph to GitHub Pages](https://github.com/lyllyl-bp/eodiseomanna/actions/workflows/pages.yml)에서 **Run workflow**를 기본 브랜치에서 실행합니다.
-4. 완료 후 [인터랙티브 그래프](https://lyllyl-bp.github.io/eodiseomanna/graph/)에 접속합니다. GitHub의 `docs/graph/index.html` 소스 링크는 페이지를 실행하지 않습니다.
-
-설정 방법은 [GitHub Pages 공식 문서](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages)를 참고합니다.
-
-### 업데이트와 표시 기준
-
-- 기본 브랜치의 그래프 페이지, 생성 데이터, 갱신 스크립트 또는 배포 설정 변경 시 자동 배포합니다. 다른 브랜치에서는 배포하지 않습니다.
-- 배포 시 `src/data/network.generated.ts`의 현재 데이터를 페이지에 넣고 **`docs/`만** 게시합니다. 앱 번들 빌드나 API 키는 필요하지 않습니다.
-- 로컬 페이지 데이터 갱신: `python3 scripts/update_graph_data.py`. Python 표준 라이브러리만 사용하며 개인 컴퓨터의 도구 경로에 의존하지 않습니다.
-- 앱과 페이지의 데이터 일치 검증: `python3 scripts/update_graph_data.py --check`.
-- D3 7.9.0은 jsDelivr CDN에서 불러오므로 페이지 사용 시 인터넷 연결이 필요합니다.
-- 노선별 계산 노드를 같은 역 이름으로 합쳐 보여줍니다. 환승 간선은 별도 선으로 그리지 않으며, 선택한 역의 환승 값은 자료에 있는 **보행시간 범위**입니다. 추천 계산의 대기시간과 자료 없는 환승의 5분 기본값은 이 표시에 포함하지 않습니다.
-- 역간 시간은 생성된 데이터의 분 단위 값입니다. 그래프 배치와 선 길이는 실제 지리적 거리나 정확한 시간 축척이 아닙니다. 신분당선 등 추정치의 한계는 아래 자료 설명을 따릅니다.
+생성된 `.ait` 파일을 앱인토스 콘솔의 **앱 출시 → 등록하기**에서 업로드합니다. 콘솔 QR 테스트를 완료한 뒤 검수를 요청합니다.
 
 ## 지원 범위
 
@@ -53,6 +40,16 @@ Pages 루트 `/eodiseomanna/`에는 프로젝트 안내가, 하위 경로 `/eodi
 - 신분당선
 - 한글, 초성, `춘ㅊ` 같은 혼합 검색
 - 사람별 복수 출발역과 역까지의 접근시간을 지원하는 도메인 모델
+
+## 데이터 그래프
+
+서비스에 사용하는 역·노선 연결과 시간 가중치를 나타낸 그래프입니다.
+
+[![수도권 철도 데이터 그래프](docs/images/transit-network.svg)](https://lyllyl-bp.github.io/eodiseomanna/graph/)
+
+[![4개 노선이 만나는 서울역 주변의 시간 가중치](docs/images/transit-weights.svg)](https://lyllyl-bp.github.io/eodiseomanna/graph/)
+
+[인터랙티브 그래프 보기](https://lyllyl-bp.github.io/eodiseomanna/graph/)
 
 ## 원본 자료와 활용 방법
 
@@ -146,5 +143,3 @@ Generated 17 lines, 710 ride edges, 250 transfer edges
 ```text
 참여자 입력 → TravelTimeProvider → 공통 JourneyMatrix → 중간역 추천 → 결과 화면
 ```
-
-앱인토스 번들 설정은 콘솔의 실제 `appName`을 정한 뒤 공식 WebView CLI로 추가합니다.

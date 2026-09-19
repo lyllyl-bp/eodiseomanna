@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="660" viewBox="0 0 1000 660" role="img" aria-labelledby="title desc">
+<title id="title">서울역 주변 시간 가중치</title><desc id="desc">현재 데이터에서 최다인 4개 노선이 만나는 서울역 주변. 1호선, 4호선, 경의중앙선, 공항철도의 역간 운행시간을 표시합니다.</desc>
+<metadata>Source: src/data/network.generated.ts; SHA256: 0da422a766bd8d6244d5f3a2c7e680b67d120021d4c818cd2c6170767c2be3af</metadata>
+<style>text{font-family:system-ui,-apple-system,"Noto Sans KR","Malgun Gothic",sans-serif;fill:#172b3a} .label{paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}</style>
+<rect width="1000" height="660" fill="#fff"/>
+<text x="36.00" y="48.00" font-size="30" text-anchor="start" class="">서울역 주변 · 시간 가중치</text>
+<text x="36.00" y="81.00" font-size="17" text-anchor="start" class="">4개 노선 환승역 · 현재 데이터 기준 최다 노선 수 공동 1위</text>
+<text x="36.00" y="133.00" font-size="18" text-anchor="start" class="">1호선</text>
+<line x1="190.00" y1="170.00" x2="810.00" y2="170.00" stroke="#0052A4" stroke-width="5" />
+<circle cx="190.00" cy="170.00" r="10" fill="#ffffff" stroke="#0052A4" stroke-width="1.3"/>
+<text x="190.00" y="204.00" font-size="20" text-anchor="middle" class="">남영</text>
+<circle cx="500.00" cy="170.00" r="10" fill="#ffffff" stroke="#0052A4" stroke-width="1.3"/>
+<text x="500.00" y="204.00" font-size="20" text-anchor="middle" class="">서울역</text>
+<circle cx="810.00" cy="170.00" r="10" fill="#ffffff" stroke="#0052A4" stroke-width="1.3"/>
+<text x="810.00" y="204.00" font-size="20" text-anchor="middle" class="">시청</text>
+<text x="345.00" y="154.00" font-size="21" text-anchor="middle" class="">2.5분</text>
+<text x="655.00" y="154.00" font-size="21" text-anchor="middle" class="">2분</text>
+<text x="36.00" y="243.00" font-size="18" text-anchor="start" class="">4호선</text>
+<line x1="190.00" y1="280.00" x2="810.00" y2="280.00" stroke="#00A5DE" stroke-width="5" />
+<circle cx="190.00" cy="280.00" r="10" fill="#ffffff" stroke="#00A5DE" stroke-width="1.3"/>
+<text x="190.00" y="314.00" font-size="20" text-anchor="middle" class="">숙대입구</text>
+<circle cx="500.00" cy="280.00" r="10" fill="#ffffff" stroke="#00A5DE" stroke-width="1.3"/>
+<text x="500.00" y="314.00" font-size="20" text-anchor="middle" class="">서울역</text>
+<circle cx="810.00" cy="280.00" r="10" fill="#ffffff" stroke="#00A5DE" stroke-width="1.3"/>
+<text x="810.00" y="314.00" font-size="20" text-anchor="middle" class="">회현</text>
+<text x="345.00" y="264.00" font-size="21" text-anchor="middle" class="">1.5분</text>
+<text x="655.00" y="264.00" font-size="21" text-anchor="middle" class="">1.5분</text>
+<text x="36.00" y="353.00" font-size="18" text-anchor="start" class="">경의중앙선</text>
+<line x1="500.00" y1="390.00" x2="810.00" y2="390.00" stroke="#77C4A3" stroke-width="5" />
+<circle cx="500.00" cy="390.00" r="10" fill="#ffffff" stroke="#77C4A3" stroke-width="1.3"/>
+<text x="500.00" y="424.00" font-size="20" text-anchor="middle" class="">서울역</text>
+<circle cx="810.00" cy="390.00" r="10" fill="#ffffff" stroke="#77C4A3" stroke-width="1.3"/>
+<text x="810.00" y="424.00" font-size="20" text-anchor="middle" class="">신촌</text>
+<text x="655.00" y="374.00" font-size="21" text-anchor="middle" class="">5.5분</text>
+<text x="36.00" y="463.00" font-size="18" text-anchor="start" class="">공항철도</text>
+<line x1="190.00" y1="500.00" x2="500.00" y2="500.00" stroke="#0095DA" stroke-width="5" />
+<circle cx="190.00" cy="500.00" r="10" fill="#ffffff" stroke="#0095DA" stroke-width="1.3"/>
+<text x="190.00" y="534.00" font-size="20" text-anchor="middle" class="">공덕</text>
+<circle cx="500.00" cy="500.00" r="10" fill="#ffffff" stroke="#0095DA" stroke-width="1.3"/>
+<text x="500.00" y="534.00" font-size="20" text-anchor="middle" class="">서울역</text>
+<text x="345.00" y="484.00" font-size="21" text-anchor="middle" class="">4분</text>
+<text x="36.00" y="586.00" font-size="17" text-anchor="start" class="">환승 보행 자료: 1·4호선 → 다른 노선 3.5분 (열차 대기시간 별도)</text>
+<text x="36.00" y="620.00" font-size="16" text-anchor="start" class="">노선별 서울역을 펼쳐 그린 상세도 · 선 길이는 시간 축척이 아닙니다.</text>
+</svg>
