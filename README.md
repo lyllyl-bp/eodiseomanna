@@ -13,18 +13,20 @@ bun run dev
 
 ## 그래프 시각화 · GitHub Pages
 
-[인터랙티브 그래프 보기](https://lyllyl-bp.github.io/eodiseomanna/) · [GitHub 저장소](https://github.com/lyllyl-bp/eodiseomanna)
+[인터랙티브 그래프 보기](https://lyllyl-bp.github.io/eodiseomanna/graph/) · [GitHub 저장소](https://github.com/lyllyl-bp/eodiseomanna)
 
 그래프 주소는 최초 Pages 배포가 완료된 뒤 접속할 수 있습니다.
 
-[그래프 페이지 소스](docs/index.html)는 일반 브라우저에서 독립적으로 실행되는 페이지입니다. 노선별 연결, 역 선택, 확대·이동, 간선의 운행시간 툴팁과 선택한 역의 시간 가중치를 제공합니다. 로컬에서는 `bun run dev` 실행 후 `http://localhost:5173/docs/index.html`로 확인할 수 있습니다.
+[그래프 페이지 소스](docs/graph/index.html)는 일반 브라우저에서 독립적으로 실행되는 페이지입니다. 노선별 연결, 역 선택, 확대·이동, 간선의 운행시간 툴팁과 선택한 역의 시간 가중치를 제공합니다. 로컬에서는 `bun run dev` 실행 후 `http://localhost:5173/docs/graph/index.html`로 확인할 수 있습니다.
+
+Pages 루트 `/eodiseomanna/`에는 프로젝트 안내가, 하위 경로 `/eodiseomanna/graph/`에는 그래프가 표시됩니다. `docs/` 디렉터리 구조를 그대로 배포하므로 별도의 라우터나 리다이렉트는 필요하지 않습니다.
 
 ### 최초 배포
 
 1. [lyllyl-bp/eodiseomanna](https://github.com/lyllyl-bp/eodiseomanna) 저장소에 코드를 푸시합니다. `docs/`, `scripts/update_graph_data.py`, `.github/workflows/pages.yml`을 함께 포함합니다.
 2. [Pages 설정](https://github.com/lyllyl-bp/eodiseomanna/settings/pages)의 **Build and deployment → Source**에서 **GitHub Actions**를 선택합니다.
 3. [Deploy graph to GitHub Pages](https://github.com/lyllyl-bp/eodiseomanna/actions/workflows/pages.yml)에서 **Run workflow**를 기본 브랜치에서 실행합니다.
-4. 완료 후 [인터랙티브 그래프](https://lyllyl-bp.github.io/eodiseomanna/)에 접속합니다. GitHub의 `docs/index.html` 소스 링크는 페이지를 실행하지 않습니다.
+4. 완료 후 [인터랙티브 그래프](https://lyllyl-bp.github.io/eodiseomanna/graph/)에 접속합니다. GitHub의 `docs/graph/index.html` 소스 링크는 페이지를 실행하지 않습니다.
 
 설정 방법은 [GitHub Pages 공식 문서](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages)를 참고합니다.
 

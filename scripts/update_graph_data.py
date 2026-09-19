@@ -27,7 +27,7 @@ def update_graph(check=False):
         for line in data["lines"]
     ]
     payload = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("<", "\\u003c")
-    page = ROOT / "docs/index.html"
+    page = ROOT / "docs/graph/index.html"
     document = page.read_text()
     frames = list(re.finditer(r'data-srcdoc="([^"]*)"', document))
     if len(frames) != 1:
