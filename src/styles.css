@@ -252,6 +252,9 @@ button { -webkit-tap-highlight-color: transparent; }
 .result-section-heading { align-items: center; }
 .result-description { margin: 13px 0 21px; color: #6b7684; font-size: 14px; line-height: 1.55; word-break: keep-all; }
 .result-list { display: grid; gap: 13px; }
+.banner-ad { height: 0; overflow: hidden; }
+.banner-ad.visible { height: auto; margin-top: 20px; }
+.banner-ad-slot { width: 100%; }
 .result-card { padding: 20px; border: 1px solid #e5e8eb; border-radius: 21px; background: #fff; box-shadow: 0 5px 18px rgba(0, 27, 55, 0.035); }
 .result-card.best { border-color: #8bbcff; box-shadow: 0 10px 28px rgba(49, 130, 246, 0.11); }
 .result-heading { display: flex; align-items: flex-start; gap: 12px; }

@@ -1,4 +1,5 @@
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { Environment, TossAds } from '@apps-in-toss/web-framework';
 import { displayStationName, stationById, stations } from './data/network';
 import { LocalNetworkProvider } from './domain/localNetworkProvider';
 import { matchesStationSearch } from './domain/koreanSearch';
@@ -6,6 +7,14 @@ import { recommendMeetingStations } from './domain/recommend';
 import type { Participant, Recommendation } from './domain/types';
 
 const provider = new LocalNetworkProvider();
+const isHostedByToss = (() => {
+  try {
+    return Environment.deploymentId !== 'local';
+  } catch {
+    return false;
+  }
+})();
+const testBannerAdId = 'ait-ad-test-banner-id';
 const initialParticipants: Participant[] = [
   { id: 'person-1', name: '나', origins: [{ stationId: '강남', accessMinutes: 0 }] },
   { id: 'person-2', name: '친구 1', origins: [{ stationId: '홍대입구', accessMinutes: 0 }] },
@@ -143,6 +152,52 @@ function RecommendationCard({ item, rank }: { item: Recommendation; rank: number
   );
 }
 
+function TestBannerAd() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    try {
+      if (!TossAds.initialize.isSupported() || !TossAds.attachBanner.isSupported()) return;
+    } catch {
+      return;
+    }
+
+    let disposed = false;
+    let banner: ReturnType<typeof TossAds.attachBanner> | undefined;
+
+    TossAds.initialize({
+      callbacks: {
+        onInitialized: () => {
+          if (disposed || !containerRef.current) return;
+          banner = TossAds.attachBanner(testBannerAdId, containerRef.current, {
+            theme: 'auto',
+            tone: 'grey',
+            variant: 'card',
+            callbacks: {
+              onAdRendered: () => setVisible(true),
+              onNoFill: () => setVisible(false),
+              onAdFailedToRender: () => setVisible(false),
+            },
+          });
+        },
+        onInitializationFailed: () => setVisible(false),
+      },
+    });
+
+    return () => {
+      disposed = true;
+      banner?.destroy();
+    };
+  }, []);
+
+  return (
+    <div className={`banner-ad ${visible ? 'visible' : ''}`} aria-label="광고" aria-hidden={!visible}>
+      <div ref={containerRef} className="banner-ad-slot" />
+    </div>
+  );
+}
+
 export default function App() {
   const [participants, setParticipants] = useState(initialParticipants);
   const [recommendations, setRecommendations] = useState<Recommendation[]>([]);
@@ -176,11 +231,13 @@ export default function App() {
 
   return (
     <div className="app-shell">
-      <header className="topbar">
-        <div className="brand-mark"><PinIcon /></div>
-        <span>어디서 만나</span>
-        <button type="button" className="help-button" aria-label="서비스 안내">?</button>
-      </header>
+      {!isHostedByToss && (
+        <header className="topbar">
+          <div className="brand-mark"><PinIcon /></div>
+          <span>어디서 만나</span>
+          <button type="button" className="help-button" aria-label="서비스 안내">?</button>
+        </header>
+      )}
 
       <main>
         <section className="hero">
@@ -274,6 +331,7 @@ export default function App() {
               <div className="result-list">
                 {recommendations.map((item, index) => <RecommendationCard key={item.stationId} item={item} rank={index + 1} />)}
               </div>
+              <TestBannerAd />
             </>
           )}
         </section>

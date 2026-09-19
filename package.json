@@ -5,10 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
-    "build": "tsc -b && vite build",
+    "build:web": "tsc -b && vite build",
+    "build": "bun run build:web && ait build",
     "test": "bun test"
   },
   "dependencies": {
+    "@apps-in-toss/web-framework": "3.4.1",
     "@vitejs/plugin-react": "latest",
     "vite": "latest",
     "typescript": "latest",
@@ -16,6 +18,7 @@
     "react-dom": "latest"
   },
   "devDependencies": {
+    "@apps-in-toss/devtools": "3.4.1",
     "@types/react": "latest",
     "@types/react-dom": "latest"
   }
