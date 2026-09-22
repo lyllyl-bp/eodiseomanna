@@ -14,7 +14,7 @@ const isHostedByToss = (() => {
     return false;
   }
 })();
-const testBannerAdId = 'ait-ad-test-banner-id';
+const bannerAdId = 'ait.v2.live.548e96465daa47b2';
 const initialParticipants: Participant[] = [
   { id: 'person-1', name: '나', origins: [{ stationId: '강남', accessMinutes: 0 }] },
   { id: 'person-2', name: '친구 1', origins: [{ stationId: '홍대입구', accessMinutes: 0 }] },
@@ -170,7 +170,7 @@ function TestBannerAd() {
       callbacks: {
         onInitialized: () => {
           if (disposed || !containerRef.current) return;
-          banner = TossAds.attachBanner(testBannerAdId, containerRef.current, {
+          banner = TossAds.attachBanner(bannerAdId, containerRef.current, {
             theme: 'auto',
             tone: 'grey',
             variant: 'card',
